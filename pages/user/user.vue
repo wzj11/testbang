@@ -6,10 +6,10 @@
 			<view class="info-card flex-row">
 				<view class="card-left flex-row">
 					<view class="img-box flex-row flex-center">
-						<image :src="userinfo.avatarUrl" class="avatar"></image>
+						<image :src="avatarUrl" class="avatar"></image>
 					</view>
 					<view class="text-box flex-column justify-center">
-						<text class="text-bold text-xl">{{userinfo.nickName}}</text>
+						<text class="text-bold text-xl">{{nickName}}</text>
 						<!-- <text class="margin-top-sm text-xs">1xxxxxxxxxx</text> -->
 							<button @tap="goLogin" v-if="!isLogin">
 										授权登录
@@ -88,14 +88,23 @@
 						name: '设置'
 					}
 				],
-				userinfo:[],
-				isLogin:false,
 			}
 		},
 		components: {
 			reList
 		},
 		onLoad() {
+		},
+		computed:{
+			isLogin: function() {
+				return this.$store.state.login
+			},
+			nickName:function() {
+				return this.$store.state.username
+			},
+			avatarUrl:function(){
+				return this.$store.state.avatarUrl
+			},
 		},
 		methods: {
 			toFuncPage:function(index) {
@@ -152,6 +161,7 @@
 								uni.request({
 									url:url,
 									success:res => {
+										that.$store.commit('getopenid',res.data.openid)
 										console.info(res.data.openid,' open');
 									}
 								})
@@ -162,9 +172,9 @@
 					desc: '用于完善会员资料',
 					lang: 'zh_CN',
 					success(user) {
-						that.userinfo = user.userInfo
-						console.log(that.userinfo);
-						that.isLogin = true
+						that.$store.commit('login',user.userInfo)
+						console.log(that.isLogin)
+						that.$store.commit('adduserinfo')
 					}
 				})
 			},

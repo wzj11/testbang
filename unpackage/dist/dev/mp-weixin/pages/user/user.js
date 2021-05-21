@@ -217,11 +217,9 @@ __webpack_require__.r(__webpack_exports__);
 
       {
         icon: '../static/setting.png',
-        name: '设置' }],
+        name: '设置' }] };
 
 
-      userinfo: [],
-      isLogin: false };
 
   },
   components: {
@@ -229,6 +227,17 @@ __webpack_require__.r(__webpack_exports__);
 
   onLoad: function onLoad() {
   },
+  computed: {
+    isLogin: function isLogin() {
+      return this.$store.state.login;
+    },
+    nickName: function nickName() {
+      return this.$store.state.username;
+    },
+    avatarUrl: function avatarUrl() {
+      return this.$store.state.avatarUrl;
+    } },
+
   methods: {
     toFuncPage: function toFuncPage(index) {
       switch (index) {
@@ -284,6 +293,7 @@ __webpack_require__.r(__webpack_exports__);
           uni.request({
             url: url,
             success: function success(res) {
+              that.$store.commit('getopenid', res.data.openid);
               console.info(res.data.openid, ' open');
             } });
 
@@ -294,9 +304,9 @@ __webpack_require__.r(__webpack_exports__);
         desc: '用于完善会员资料',
         lang: 'zh_CN',
         success: function success(user) {
-          that.userinfo = user.userInfo;
-          console.log(that.userinfo);
-          that.isLogin = true;
+          that.$store.commit('login', user.userInfo);
+          console.log(that.isLogin);
+          that.$store.commit('adduserinfo');
         } });
 
     } } };exports.default = _default;

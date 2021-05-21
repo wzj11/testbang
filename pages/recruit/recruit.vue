@@ -102,7 +102,6 @@
 										},
 										success(res) {
 											console.log(res)
-											that.getImage()
 										}
 									})
 								}
@@ -142,7 +141,9 @@
 						address: this.address,
 						money_type:this.value,
 						content: this.data,
-						price: '¥' + this.price
+						price: '¥' + this.price,
+						mission:this.$store.state.mission + 1,
+						openid:this.$store.state.openid
 					},
 					success(res) {
 						console.log(res)
@@ -151,6 +152,7 @@
 							type:'success',
 							back:'true'
 						})
+						that.$store.commit('addmission')
 					}
 				})
 				files.forEach((item) => {
@@ -163,7 +165,9 @@
 								name:'addImage',
 								data:{
 									imageUrl: imageUrl,
-									createtime: Date.now()
+									createtime: Date.now(),
+									mission:that.$store.state.mission + 1,
+									openid:that.$store.state.openid
 								},
 								success(res) {
 									console.log(res)

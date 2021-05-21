@@ -284,7 +284,6 @@ var _default =
 
                   success: function success(res) {
                     console.log(res);
-                    that.getImage();
                   } });
 
               } });
@@ -324,7 +323,9 @@ var _default =
           address: this.address,
           money_type: this.value,
           content: this.data,
-          price: '¥' + this.price },
+          price: '¥' + this.price,
+          mission: this.$store.state.mission + 1,
+          openid: this.$store.state.openid },
 
         success: function success(res) {
           console.log(res);
@@ -333,6 +334,7 @@ var _default =
             type: 'success',
             back: 'true' });
 
+          that.$store.commit('addmission');
         } });
 
       files.forEach(function (item) {
@@ -345,7 +347,9 @@ var _default =
               name: 'addImage',
               data: {
                 imageUrl: imageUrl,
-                createtime: Date.now() },
+                createtime: Date.now(),
+                mission: that.$store.state.mission + 1,
+                openid: that.$store.state.openid },
 
               success: function success(res) {
                 console.log(res);

@@ -38,6 +38,7 @@
 			</view>
 		</view>
 		<button @click="toFa">fabu</button>
+		<u-toast ref="uToast" type="success"/>
 	</view>
 </template>
 
@@ -94,9 +95,16 @@
 				console.log('', item, index)
 			},
 			toFa:function() {
-				uni.navigateTo({
-					url:'../recruit/recruit'
-				})
+				if (this.$store.state.login) {
+					uni.navigateTo({
+						url:'../recruit/recruit'
+					})
+				} else {
+					this.$refs.uToast.show({
+						title:'您未登录，请前往"我的"',
+						type:'error'
+					})
+				}
 			}
 		}
 	}
