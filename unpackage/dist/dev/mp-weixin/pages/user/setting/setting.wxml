@@ -1,0 +1,1 @@
+<view class="container bg-white flex-column align-center"><view class="menu-list"><re-list vue-id="54542900-1" icon="../static/xieyi.png" name="平台协议" bind:__l="__l"></re-list></view><view class="re-btn bg-red text-white re-btn-lg">退出登录</view></view>

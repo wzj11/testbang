@@ -1,0 +1,54 @@
+{
+  "pages": [
+    "pages/user/user",
+    "pages/index/index",
+    "pages/messsage/messsage",
+    "pages/my/my",
+    "pages/detail/detail",
+    "pages/list/list",
+    "pages/search/search",
+    "pages/chat/chat",
+    "pages/clafy/clafy",
+    "pages/user/myResume/myResume",
+    "pages/user/allOffer/allOffer",
+    "pages/user/myPartTime/myPartTime",
+    "pages/user/report/report",
+    "pages/user/setting/setting",
+    "pages/user/share/share",
+    "pages/user/Favorite/Favorite",
+    "pages/recruit/recruit",
+    "pages/newrecruit/newrecruit"
+  ],
+  "subPackages": [],
+  "window": {
+    "navigationBarTextStyle": "black",
+    "navigationBarTitleText": "uni-app",
+    "navigationBarBackgroundColor": "#F8F8F8",
+    "enablePullDownRefresh": true,
+    "backgroundColor": "#F8F8F8"
+  },
+  "tabBar": {
+    "list": [
+      {
+        "text": "首页",
+        "pagePath": "pages/index/index"
+      },
+      {
+        "text": "分类",
+        "pagePath": "pages/clafy/clafy"
+      },
+      {
+        "text": "消息",
+        "pagePath": "pages/chat/chat"
+      },
+      {
+        "text": "我的",
+        "pagePath": "pages/user/user"
+      }
+    ]
+  },
+  "usingComponents": {
+    "title-bar": "/components/titleBar"
+  },
+  "sitemapLocation": "sitemap.json"
+}
