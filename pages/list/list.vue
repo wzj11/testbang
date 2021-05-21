@@ -120,7 +120,7 @@
 					value:option.name
 				},
 				success(res) {
-					console.log(res)
+					console.log(res.result.data,'内容')
 					that.tllist = res.result.data
 					that.tllist.forEach((item, index) => {
 						if (item.money_type == "日结") {

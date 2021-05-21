@@ -11,13 +11,13 @@
 				<u-action-sheet :list="actionSheetList1" v-model="reshow" @click="actionSheetCallback1"></u-action-sheet>
 			</u-form-item>
 			<u-form-item label="薪资">
-				<u-input v-model="price" type="number" border="border"  placeholder="请输入薪资"/>
+				<u-input v-model="price" type="number" border="border"  placeholder="请输入薪资,根据您选择的结算方式决定"/>
 			</u-form-item>
 			<u-form-item label="地址">
 				<u-input v-model="address" type="text" border="border"  placeholder="请输入详细工作地址"/>
 			</u-form-item>
 			<u-form-item label="时间">
-				<u-input v-model="time" type="text" border="border"  placeholder="请输入工作时间"/>
+				<u-input v-model="time" type="text" border="border"  placeholder="请输入工作时间,如 周三14:00-20:00"/>
 			</u-form-item>
 			<u-form-item label="内容">
 				<u-input v-model="data" type="textarea" border="border"  placeholder="请输入详细工作内容"/>
@@ -29,6 +29,7 @@
 			<u-button @click="submit" shape="circle" size="medium">提交</u-button>
 		</view>
 		<u-toast ref="uToast" type="success"/>
+		<u-toast ref="uToast1" type="success"/>
 	</view>
 </template>
 
@@ -72,10 +73,22 @@
 					{
 						text: '家教'
 					},
+					{
+						text: '其他'
+					},
 				]
 								}
 		},
 		onLoad() {
+		},
+		computed:{
+			ifnull:function() {
+				if (this.type && this.time && this.address && this.value && this.data && this.price) {
+					return false
+				} else {
+					return true
+				}
+			}
 		},
 		methods: {
 			image: function() {
@@ -133,50 +146,58 @@
 			addMsg:function() {
 				const that = this
 				let files = this.$refs.uUpload.lists
-				uniCloud.callFunction({
-					name:'add',
-					data:{
-						type: this.type,
-						time: this.time,
-						address: this.address,
-						money_type:this.value,
-						content: this.data,
-						price: '¥' + this.price,
-						mission:this.$store.state.mission + 1,
-						openid:this.$store.state.openid
-					},
-					success(res) {
-						console.log(res)
-						that.$refs.uToast.show({
-							title: '上传成功',
-							type:'success',
-							back:'true'
-						})
-						that.$store.commit('addmission')
-					}
-				})
-				files.forEach((item) => {
-					uniCloud.uploadFile({
-						filePath:item.file.path,
-						cloudPath:Date.now() + '.jpg',
+				if (this.ifnull) {
+					this.$refs.uToast1.show({
+						title:'除图片外所有内容均为必填，请检查',
+						type:'error'
+					})
+				} else {
+					uniCloud.callFunction({
+						name:'add',
+						data:{
+							type: this.type,
+							time: this.time,
+							address: this.address,
+							money_type:this.value,
+							content: this.data,
+							price: '¥' + this.price,
+							mission:this.$store.state.mission + 1,
+							openid:this.$store.state.openid
+						},
 						success(res) {
-							let imageUrl = res.fileID
-							uniCloud.callFunction({
-								name:'addImage',
-								data:{
-									imageUrl: imageUrl,
-									createtime: Date.now(),
-									mission:that.$store.state.mission + 1,
-									openid:that.$store.state.openid
-								},
-								success(res) {
-									console.log(res)
-								}
+							console.log(res)
+							that.$refs.uToast.show({
+								title: '上传成功',
+								type:'success',
+								back:'true'
 							})
-							console.log(imageUrl)
+							that.$store.commit('addmission')
 						}
 					})
-				})
+					files.forEach((item) => {
+						uniCloud.uploadFile({
+							filePath:item.file.path,
+							cloudPath:Date.now() + '.jpg',
+							success(res) {
+								let imageUrl = res.fileID
+								uniCloud.callFunction({
+									name:'addImage',
+									data:{
+										imageUrl: imageUrl,
+										createtime: Date.now(),
+										mission:that.$store.state.mission + 1,
+										openid:that.$store.state.openid
+									},
+									success(res) {
+										console.log(res)
+									}
+								})
+								console.log(imageUrl)
+							}
+						})
+					})
+				}
+				
 			},
 			submit:function() {
 				const that = this

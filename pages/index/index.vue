@@ -24,8 +24,8 @@
 			<uni-search-bar :radius="100" @confirm="search" cancelButton="none"></uni-search-bar>
 			<carousel :img-list="imgList" url-key="url" @selected="selectedBanner"/>
 		</view>
-		<uni-list v-for="(row, index) in tllist" :key="index">
-		   <uni-list-item :title="row.type" :note="row.content" :rightText="row.price" to="../detail/detail"></uni-list-item>
+		<uni-list v-for="(row, index) in tllist" :key="index" >
+		   <uni-list-item :title="row.type" :note="row.content" :rightText="row.price" @click="toDe(row)" clickable="true"></uni-list-item>
 		</uni-list>
 		<view v-show="isLoadMore">
 		                <uni-load-more status="loading" ></uni-load-more>
@@ -94,6 +94,14 @@
 		methods: {
 			selectedBanner(item, index) {
 				console.log('', item, index)
+			},
+			toDe:function(item) {
+				let str=JSON.stringify(item);
+				uni.navigateTo({
+					url:'../detail/detail?jsonStr=' + str
+				})
+				console.log('yes')
+				console.log(item)
 			},
 			findadd(){
 				const that = this

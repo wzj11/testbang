@@ -130,13 +130,13 @@
 					<image :src="swiper.img"></image>
 				</swiper-item>
 			</swiper>
-			<view class="indicator">{{currentSwiper+1}}/{{swiperList.length}}</view>
+			<view class="indicator">{{currentnum}}/{{swiperList.length}}</view>
 		</view>
 		<!-- 标题 价格 -->
 		<view class="info-box goods-info">
-			<view class="price">￥{{goodsData.price}}</view>
+			<view class="price">{{info.price}}</view>
 			<view class="title">
-				{{goodsData.name}}
+				{{info.type}}
 			</view>
 		</view>
 		<!-- 服务-规则选择 -->
@@ -149,7 +149,7 @@
 			<view class="row" @tap="showSpec(false)">
 				<view class="text">详细地址</view>
 				<view class="content">
-					<view>{{goodsData.spec}}</view>
+					<view>{{info.address}}</view>
 					<view class="sp">
 						<view>{{spec}}</view>
 					</view>
@@ -160,14 +160,14 @@
 		  <view class="row" @tap="showSpec(false)">
 		  	<view class="text">工作时间</view>
 		  	<view class="content">
-		  		<view>{{goodsData.time}}</view>
+		  		<view>{{info.time}}</view>
 				</view>
 		  </view>
 		</view>
 		<!-- 详情 -->
 		<view class="description">
 			<view class="title">———— 兼职详情 ————</view>
-			<view class="content"><rich-text :nodes="descriptionStr"></rich-text></view>
+			<view class="content"><rich-text :nodes="info.content"></rich-text></view>
 		</view>
 	  <uni-list>
 			<uni-list-item title="XXXXX" note="请联系我" thumb="https://vkceyugu.cdn.bspapp.com/VKCEYUGU-dc-site/460d46d0-4fcc-11eb-8ff1-d5dcf8779628.png"
@@ -188,19 +188,19 @@ export default {
 			afterHeaderzIndex: 10,//层级
 			beforeHeaderOpacity: 1,//不透明度
 			afterHeaderOpacity: 0,//不透明度
+			mission: 0,
+			openid: '',
+			imgList:[],
+			info:{},
 			//是否显示返回按钮
 			// #ifndef MP
 			showBack:true,
 			// #endif
 			//轮播主图数据
-			swiperList: [
-				{ id: 1, img: 'https://img2.baidu.com/it/u=1438503254,1495984617&fm=26&fmt=auto&gp=0.jpg' },
-				{ id: 2, img: 'https://img2.baidu.com/it/u=3424609134,1835462025&fm=26&fmt=auto&gp=0.jpg' },
-				{ id: 3, img: 'https://img0.baidu.com/it/u=2884543252,257972711&fm=26&fmt=auto&gp=0.jpg' },
-				{ id: 4, img: 'https://ae01.alicdn.com/kf/HTB1OHZrTXzqK1RjSZFvq6AB7VXaw.jpg' }
-			],
+			swiperList: [],
 			//轮播图下标
 			currentSwiper: 0,
+			nownum:0,
 			anchorlist:[],//导航条锚点
 			selectAnchor:0,//选中锚点
 			serviceClass: '',//服务弹窗css类，控制开关动画
@@ -226,13 +226,49 @@ export default {
 			descriptionStr:'圣诞到今年福建省男佛呢是离开你六十年历史的名称；马上到了分手两年是；都没法；是'
 		};
 	},
+	computed:{
+		currentnum:function() {
+			if (this.swiperList.length == 0) {
+				return 0;
+			} else {
+				return this.currentSwiper + 1;
+			}
+		}
+	},
 	onLoad(option) {
 		// #ifdef MP
 		//小程序隐藏返回按钮
 		this.showBack = false;
 		// #endif
+		const that = this
+		let object=JSON.parse(option.jsonStr);
+		this.info = object
+		this.mission = object.mission
+		this.openid = object.openid
+		uniCloud.callFunction({
+			name:'getImage',
+			data:{
+				mission:this.mission,
+				openid:this.openid
+			},
+			success(res) {
+				let list = res.result.data
+				if (res.result.data != 0) {
+					console.log('image')
+					list.forEach((item, index) => {
+						console.log('num:',index)
+						let use = {}
+						use.id = index + 1
+						use.img = item.imageUrl
+						console.log(use)
+						that.swiperList = that.swiperList.concat(use)
+					})
+				}
+				console.log(res)
+			}
+		})
 		//option为object类型，会序列化上个页面传递的参数
-		console.log(option.cid); //打印出上个页面传递的参数。
+		console.log(object); //打印出上个页面传递的参数。
 	},
 	onReady(){
 		this.calcAnchor();//计算锚点高度，页面数据是ajax加载时，请把此行放在数据渲染完成事件中执行以保证高度计算正确
@@ -256,6 +292,7 @@ export default {
 	methods: {
 		//轮播图指示器
 		swiperChange(event) {
+			console.log(event.detail)
 			this.currentSwiper = event.detail.current;
 		},
 		//消息列表

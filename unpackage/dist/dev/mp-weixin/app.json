@@ -49,6 +49,5 @@
   },
   "usingComponents": {
     "title-bar": "/components/titleBar"
-  },
-  "sitemapLocation": "sitemap.json"
+  }
 }
