@@ -96,10 +96,10 @@ var components
 try {
   components = {
     uniList: function() {
-      return __webpack_require__.e(/*! import() | uni_modules/uni-list/components/uni-list/uni-list */ "uni_modules/uni-list/components/uni-list/uni-list").then(__webpack_require__.bind(null, /*! @/uni_modules/uni-list/components/uni-list/uni-list.vue */ 207))
+      return __webpack_require__.e(/*! import() | uni_modules/uni-list/components/uni-list/uni-list */ "uni_modules/uni-list/components/uni-list/uni-list").then(__webpack_require__.bind(null, /*! @/uni_modules/uni-list/components/uni-list/uni-list.vue */ 215))
     },
     uniListChat: function() {
-      return __webpack_require__.e(/*! import() | uni_modules/uni-list/components/uni-list-chat/uni-list-chat */ "uni_modules/uni-list/components/uni-list-chat/uni-list-chat").then(__webpack_require__.bind(null, /*! @/uni_modules/uni-list/components/uni-list-chat/uni-list-chat.vue */ 256))
+      return __webpack_require__.e(/*! import() | uni_modules/uni-list/components/uni-list-chat/uni-list-chat */ "uni_modules/uni-list/components/uni-list-chat/uni-list-chat").then(__webpack_require__.bind(null, /*! @/uni_modules/uni-list/components/uni-list-chat/uni-list-chat.vue */ 264))
     }
   }
 } catch (e) {
@@ -123,6 +123,26 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
+  var l0 = _vm.__map(_vm.uselist, function(item, index) {
+    var $orig = _vm.__get_orig(item)
+
+    var m0 = _vm.isyou(item)
+    var m1 = _vm.isyou(item)
+    return {
+      $orig: $orig,
+      m0: m0,
+      m1: m1
+    }
+  })
+
+  _vm.$mp.data = Object.assign(
+    {},
+    {
+      $root: {
+        l0: l0
+      }
+    }
+  )
 }
 var recyclableRender = false
 var staticRenderFns = []
@@ -156,7 +176,7 @@ __webpack_require__.r(__webpack_exports__);
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0; //
+/* WEBPACK VAR INJECTION */(function(uniCloud, uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0; //
 //
 //
 //
@@ -195,10 +215,89 @@ var _default =
         name: "我孙",
         time: "2021-02-09 20:20",
         avatar: "https://vkceyugu.cdn.bspapp.com/VKCEYUGU-dc-site/460d46d0-4fcc-11eb-8ff1-d5dcf8779628.png",
-        num: "2" }] };
+        num: "2" }],
 
+      uselist: [],
+      infolist: [],
+      userlist: [],
+      timer: null,
+      real: [],
+      img: '',
+      yourN: '' };
 
-  } };exports.default = _default;
+  },
+  onShow: function onShow() {
+    this.fresh();
+    this.timer = setInterval(this.fresh, 100);
+  },
+  onHide: function onHide() {
+    if (this.timer) {
+      clearInterval(this.timer);
+      this.timer = null;
+    }
+  },
+  methods: {
+    fresh: function fresh() {
+      var that = this;
+      var length = that.userlist.length;
+      var yourid = this.$store.state.openid;
+      that.infolist = [];
+      that.userlist = [];
+      uniCloud.callFunction({
+        name: 'getyourMsg',
+        data: {
+          yourid: yourid },
+
+        success: function success(res) {
+          console.log(res);
+          if (!that.compare(that.uselist, res.result.data)) {
+            that.uselist = res.result.data;
+            that.uselist.forEach(function (item) {
+              item.time = new Date(item.time).toLocaleString();
+            });
+          }
+
+        } });
+
+    },
+    isyou: function isyou(item) {
+      if (item.userid == this.$store.state.openid) {
+        return true;
+      } else {
+        return false;
+      }
+    },
+    show: function show() {
+      this.uselist.forEach(function (item) {
+        item.ye = 'zzy';
+      });
+      this.$forceUpdate();
+    },
+    compare: function compare(item1, item2) {
+      if (item1.length == 0) {
+        return false;
+      }
+      var num = 0;
+      item1.forEach(function (it, index) {
+        if (it.project == item2[index].project && it.mission == item2[index].mission && it.time == new Date(item2[index].time).toLocaleString()) {
+          num += 1;
+        }
+      });
+      if (num == item1.length) {
+        return true;
+      } else {
+        return false;
+      }
+
+    },
+    tomsg: function tomsg(e) {
+      console.log(e);
+      var str = JSON.stringify(e);
+      uni.navigateTo({
+        url: "../testmessage/testmessage?Jsonstr=" + str + "&type=your" });
+
+    } } };exports.default = _default;
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/vue-cli-plugin-uni/packages/uni-cloud/dist/index.js */ 38)["default"], __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
 
 /***/ }),
 

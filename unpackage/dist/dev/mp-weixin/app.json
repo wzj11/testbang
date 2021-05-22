@@ -17,7 +17,8 @@
     "pages/user/share/share",
     "pages/user/Favorite/Favorite",
     "pages/recruit/recruit",
-    "pages/newrecruit/newrecruit"
+    "pages/newrecruit/newrecruit",
+    "pages/testmessage/testmessage"
   ],
   "subPackages": [],
   "window": {
@@ -65,5 +66,6 @@
   },
   "usingComponents": {
     "title-bar": "/components/titleBar"
-  }
+  },
+  "sitemapLocation": "sitemap.json"
 }

@@ -130,7 +130,11 @@ __webpack_require__.r(__webpack_exports__);
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
+<<<<<<< HEAD
 /* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var reList = function reList() {__webpack_require__.e(/*! require.ensure | components/listItem */ "components/listItem").then((function () {return resolve(__webpack_require__(/*! @/components/listItem.vue */ 228));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var _default =
+=======
+/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var reList = function reList() {__webpack_require__.e(/*! require.ensure | components/listItem */ "components/listItem").then((function () {return resolve(__webpack_require__(/*! @/components/listItem.vue */ 201));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var _default =
+>>>>>>> 8d0023366085d65bbb7ece7de1976a9550afc421
 
 
 

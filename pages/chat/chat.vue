@@ -1,9 +1,9 @@
 <template>
 	<uni-list>
-	    <uni-list :border="true" v-for="(item,index) in chatlist" :key="index">
+	    <uni-list :border="true" v-for="(item,index) in uselist" :key="index">
 	        <!-- 显示圆形头像 -->
 	        <!-- 右侧带角标 -->
-	        <uni-list-chat :title="item.name" :avatar="item.avatar" note="您收到一条新的消息" :time="item.time" :badge-text="item.num" to="../messsage/messsage"></uni-list-chat>
+	        <uni-list-chat :title="isyou(item)?item.yourName:item.myName" :time="item.time" :avatar="isyou(item)?item.yourImg:item.myUrl" :note="item.content"  badge-text="2" @click="tomsg(item)" clickable="true"></uni-list-chat>
 	    </uni-list>
 	</uni-list>
 </template>
@@ -38,9 +38,88 @@
 								time:"2021-02-09 20:20",
 								avatar:"https://vkceyugu.cdn.bspapp.com/VKCEYUGU-dc-site/460d46d0-4fcc-11eb-8ff1-d5dcf8779628.png",
 								num:"2"
-								}]
+								}],
+								uselist:[],
+								infolist:[],
+								userlist:[],
+								timer:null,
+								real:[],
+								img:'',
+								yourN:''
 	        }
-	    }
+	    },
+			onShow() {
+				this.fresh()
+				this.timer = setInterval(this.fresh,100)
+			},
+			onHide() {
+				if(this.timer) {  
+					clearInterval(this.timer);  
+					this.timer = null;  
+				}  
+			},
+			methods:{
+				fresh:function() {
+					const that = this
+					let length = that.userlist.length
+					const yourid = this.$store.state.openid
+					that.infolist = []
+					that.userlist = []
+					uniCloud.callFunction({
+						name:'getyourMsg',
+						data:{
+							yourid
+						},
+						success(res) {
+						console.log(res)
+							if (!that.compare(that.uselist,res.result.data)) {
+								that.uselist = res.result.data
+								that.uselist.forEach(item => {
+									item.time = new Date(item.time).toLocaleString()
+								})
+							}
+							
+						}
+					})
+				},
+				isyou(item) {
+					if (item.userid == this.$store.state.openid) {
+						return true
+					} else {
+						return false
+					}
+				},
+				show() {
+					this.uselist.forEach(item => {
+						item.ye = 'zzy'
+					})
+					this.$forceUpdate()
+				},
+				compare(item1, item2) {
+					if (item1.length == 0) {
+						return false
+					}
+					let num = 0
+					item1.forEach((it,index) => {
+						if (it.project == item2[index].project && it.mission == item2[index].mission && it.time == new Date(item2[index].time).toLocaleString()) {
+							num += 1
+						}
+					})
+					if (num == item1.length) {
+						return true
+					} else {
+						return false
+					}
+					
+				},
+				tomsg:function(e) {
+					console.log(e)
+					let str = JSON.stringify(e)
+					uni.navigateTo({
+						url:"../testmessage/testmessage?Jsonstr=" + str + "&type=your" 
+					})
+				}
+			}
 	}
 </script>
 
