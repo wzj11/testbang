@@ -458,7 +458,7 @@ page {
   margin-left: -4%;
 }
 .footer .icons .box {
-  width: 80rpx;
+  width: 160rpx;
   height: 80rpx;
   display: -webkit-box;
   display: -webkit-flex;
@@ -481,7 +481,7 @@ page {
   -webkit-justify-content: center;
           justify-content: center;
   width: 100%;
-  font-size: 22rpx;
+  font-size: 26rpx;
   color: #666;
 }
 .footer .btn {
@@ -493,11 +493,10 @@ page {
   display: flex;
   margin-right: -2%;
 }
-.footer .btn .joinCart,
-.footer .btn .buy {
+.footer .btn .chat {
   height: 80rpx;
   padding: 0 40rpx;
-  color: #fff;
+  background-color: #007AFF;
   display: -webkit-box;
   display: -webkit-flex;
   display: flex;
@@ -505,12 +504,6 @@ page {
   -webkit-align-items: center;
           align-items: center;
   font-size: 28rpx;
-}
-.footer .btn .joinCart {
-  background-color: #f0b46c;
-}
-.footer .btn .buy {
-  background-color: #f06c7a;
 }
 .popup {
   position: fixed;

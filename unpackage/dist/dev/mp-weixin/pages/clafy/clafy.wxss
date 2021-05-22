@@ -24,6 +24,9 @@
 /* 垂直间距 */
 /* 透明度 */
 /* 文章场景相关 */
+page {
+  background: url("http://tiebapic.baidu.com/forum/w%3D580%3B/sign=f1e777a3650e0cf3a0f74ef33a7df31f/b3119313b07eca80048de356862397dda04483f3.jpg");
+}
 .content {
   display: -webkit-box;
   display: -webkit-flex;
@@ -52,10 +55,10 @@
   position: fixed;
   top: 0;
   z-index: 10;
-  background-color: #fff;
+  background-color: #F0FFFF;
 }
 .header .addr {
-  width: 120rpx;
+  width: 200rpx;
   height: 60rpx;
   -webkit-flex-shrink: 0;
           flex-shrink: 0;
@@ -76,8 +79,12 @@
   -webkit-box-align: center;
   -webkit-align-items: center;
           align-items: center;
-  font-size: 42rpx;
+  font-size: 32rpx;
   color: #ffc50a;
+}
+.header .addr .icon .a {
+  height: 60rpx;
+  width: 60rpx;
 }
 .header .input-box {
   width: 100%;
@@ -113,7 +120,7 @@
   font-size: 28rpx;
 }
 .header .icon-btn {
-  width: 120rpx;
+  width: 60rpx;
   height: 60rpx;
   -webkit-flex-shrink: 0;
           flex-shrink: 0;
@@ -137,6 +144,9 @@
 }
 .turn {
   margin-top: 80rpx;
+}
+.push {
+  border: thin;
 }
 .category-list {
   width: 92%;

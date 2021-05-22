@@ -1,26 +1,26 @@
 <template>
-	<view>
+	<view class="all">
 		<text>请填写您要发布的兼职信息</text>
 		<u-form>
 			<u-form-item label="结算">
-				<u-input v-model="value" type="select" border="border" @click="show = true" placeholder="请选择结算方式"/>
+				<u-input v-model="value" type="select" border="border" border-color="#826858" @click="show = true" placeholder="请选择结算方式"/>
 				<u-action-sheet :list="actionSheetList" v-model="show" @click="actionSheetCallback"></u-action-sheet>
 			</u-form-item>
 			<u-form-item label="类型">
-				<u-input v-model="type" type="select" border="border" @click="reshow = true" placeholder="请选择兼职类型"/>
+				<u-input v-model="type" type="select" border="border" border-color="#826858" @click="reshow = true" placeholder="请选择兼职类型"/>
 				<u-action-sheet :list="actionSheetList1" v-model="reshow" @click="actionSheetCallback1"></u-action-sheet>
 			</u-form-item>
 			<u-form-item label="薪资">
-				<u-input v-model="price" type="number" border="border"  placeholder="请输入薪资,根据您选择的结算方式决定"/>
+				<u-input v-model="price" type="number" border="border" border-color="#826858" placeholder="请输入薪资,根据您选择的结算方式决定"/>
 			</u-form-item>
 			<u-form-item label="地址">
-				<u-input v-model="address" type="text" border="border"  placeholder="请输入详细工作地址"/>
+				<u-input v-model="address" type="text" border="border" border-color="#826858" placeholder="请输入详细工作地址"/>
 			</u-form-item>
 			<u-form-item label="时间">
-				<u-input v-model="time" type="text" border="border"  placeholder="请输入工作时间,如 周三14:00-20:00"/>
+				<u-input v-model="time" type="text" border="border" border-color="#826858" placeholder="请输入工作时间,如 周三14:00-20:00"/>
 			</u-form-item>
 			<u-form-item label="内容">
-				<u-input v-model="data" type="textarea" border="border"  placeholder="请输入详细工作内容"/>
+				<u-input v-model="data" type="textarea" border="border" border-color="#826858" placeholder="请输入详细工作内容"/>
 			</u-form-item>
 		</u-form>
 		<text>工作地点图</text>
@@ -210,6 +210,12 @@
 </script>
 
 <style>
+	page {
+		background: url('http://tiebapic.baidu.com/forum/w%3D580%3B/sign=624318b7b8c379317d688621dbffb645/a8014c086e061d9510c8ed896cf40ad163d9caf1.jpg');
+	}
+	.all {
+		margin: 20rpx;
+	}
 .content {
 	display: flex;
 	flex-direction: row;

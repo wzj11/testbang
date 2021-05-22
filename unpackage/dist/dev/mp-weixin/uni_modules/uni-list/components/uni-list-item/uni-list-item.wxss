@@ -36,7 +36,6 @@
   -webkit-box-align: center;
   -webkit-align-items: center;
           align-items: center;
-  background-color: #fff;
   -webkit-box-orient: horizontal;
   -webkit-box-direction: normal;
   -webkit-flex-direction: row;

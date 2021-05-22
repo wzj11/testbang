@@ -25,8 +25,7 @@
             </view>
             
         </form>
-				
-    </view>
+		</view>
 </template>
 <script>
     export default {

@@ -40,8 +40,8 @@
 				</view>
 			</view>
 			<view class="btn">
-				<view class="joinCart" @tap="joinCart">加入购物车</view>
-				<view class="buy" @tap="buy">立即购买</view>
+				<view class="chat" @tap="toChat()">聊一聊</view>
+				
 			</view>
 		</view>
 		<!-- share弹窗 -->
@@ -304,7 +304,7 @@ export default {
 		// 客服
 		toChat(){
 			uni.navigateTo({
-				url:"../msg/chat/chat?name=客服008"
+				url:"../messsage/messsage"
 			})
 		},
 		// 分享
@@ -779,7 +779,7 @@ page {
 		height: 80upx;
 		margin-left: -4%;
 		.box {
-			width: 80upx;
+			width: 160upx;
 			height: 80upx;
 			display: flex;
 			justify-content: center;
@@ -792,7 +792,7 @@ page {
 				display: flex;
 				justify-content: center;
 				width: 100%;
-				font-size: 22upx;
+				font-size: 26upx;
 				color: #666;
 			}
 		}
@@ -803,20 +803,13 @@ page {
 		overflow: hidden;
 		display: flex;
 		margin-right: -2%;
-		.joinCart,
-		.buy {
+		.chat {
 			height: 80upx;
 			padding: 0 40upx;
-			color: #fff;
+			background-color: #007AFF;
 			display: flex;
 			align-items: center;
 			font-size: 28upx;
-		}
-		.joinCart {
-			background-color: #f0b46c;
-		}
-		.buy {
-			background-color: #f06c7a;
 		}
 	}
 }

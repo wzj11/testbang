@@ -24,6 +24,25 @@
 /* 垂直间距 */
 /* 透明度 */
 /* 文章场景相关 */
+page {
+  background: url("http://tiebapic.baidu.com/forum/w%3D580/sign=8b08229a19f41bd5da53e8fc61db81a0/f42cbd99a9014c089810ed141d7b02087bf4f465.jpg");
+  background-size: 100% 100%;
+}
+.content {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -webkit-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+          align-items: center;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+          justify-content: center;
+}
 .header {
   width: 92%;
   padding: 0 4%;
@@ -37,10 +56,10 @@
   position: fixed;
   top: 0;
   z-index: 10;
-  background-color: #fff;
+  background-color: #E0EEEE;
 }
 .header .addr {
-  width: 120rpx;
+  width: 200rpx;
   height: 60rpx;
   -webkit-flex-shrink: 0;
           flex-shrink: 0;
@@ -63,6 +82,10 @@
           align-items: center;
   font-size: 32rpx;
   color: #ffc50a;
+}
+.header .addr .icon .a {
+  height: 60rpx;
+  width: 60rpx;
 }
 .header .input-box {
   width: 100%;
@@ -119,21 +142,6 @@
   -webkit-align-items: center;
           align-items: center;
   font-size: 42rpx;
-}
-.content {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-  -webkit-flex-direction: column;
-          flex-direction: column;
-  -webkit-box-align: center;
-  -webkit-align-items: center;
-          align-items: center;
-  -webkit-box-pack: center;
-  -webkit-justify-content: center;
-          justify-content: center;
 }
 .city {
   font-size: 2rpx;

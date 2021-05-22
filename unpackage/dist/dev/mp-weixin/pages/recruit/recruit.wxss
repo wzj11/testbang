@@ -1,4 +1,10 @@
 
+page {
+		background: url('http://tiebapic.baidu.com/forum/w%3D580%3B/sign=624318b7b8c379317d688621dbffb645/a8014c086e061d9510c8ed896cf40ad163d9caf1.jpg');
+}
+.all {
+		margin: 20rpx;
+}
 .content {
 	display: -webkit-box;
 	display: -webkit-flex;

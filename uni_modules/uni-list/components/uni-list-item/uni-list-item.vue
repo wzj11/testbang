@@ -244,7 +244,7 @@ $list-item-pd: $uni-spacing-col-lg $uni-spacing-row-lg;
 	position: relative;
 	justify-content: space-between;
 	align-items: center;
-	background-color: #fff;
+	
 	flex-direction: row;
 	/* #ifdef H5 */
 	cursor: pointer;

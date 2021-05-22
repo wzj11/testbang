@@ -1,27 +1,24 @@
 <template>
 	<view>
 		<view class="content">
-			<view v-if="showHeader" class="header">
-				<!-- 定位城市 -->
-				<view class="addr">
-					<view class="icon location"></view>
-					{{ city }}
-				</view>
-				<!-- 搜索框 -->
-				<view class="input-box">
-					<input
-						placeholder="默认关键字"
-						placeholder-style="color:#c0c0c0;"
-						@tap="toSearch()"
-					/>
-					<view class="icon search"></view>
-				</view>
-				<!-- 右侧图标按钮 -->
-				<view class="icon-btn">
-					<view class="icon yuyin-home"></view>
-					<view class="icon tongzhi" @tap="toMsg"></view>
-				</view>
-			</view>
+      <view v-if="showHeader" class="header" :style="{ position: headerPosition,top:headerTop,opacity: afterHeaderOpacity }">
+      	<!-- 定位城市 -->
+      	<view class="addr">
+      		<view class="icon location" @click="findadd">
+      			<image class="a" src="../../static/img/tarbar/ditu.png" mode=""></image>
+      		</view>
+      		{{city}}
+      	</view>
+      	<!-- 搜索框 -->
+      	<view class="input-box">
+      		<input
+      			placeholder="默认关键字"
+      			placeholder-style="color:#c0c0c0;"
+      			@tap="toSearch()"
+      		/>
+      		<view class="icon search"></view>
+      	</view>
+      </view>
 			<view class="turn">
 				<carousel :img-list="imgList" url-key="url" @selected="selectedBanner"/>
 			</view>
@@ -37,13 +34,14 @@
 				<view class="text">{{ row.name }}</view>
 			</view>
 		</view>
-		<button @click="toFa">fabu</button>
+		<button type="primary" plain="true" @click="toFa">发布</button>
 		<u-toast ref="uToast" type="success"/>
 	</view>
 </template>
 
 <script>
 	import carousel from '@/components/vear-carousel/vear-carousel'
+	import QQMapWX from '../../untils/qqmap-wx-jssdk1/qqmap-wx-jssdk.js'
 	export default {
 		components: {
 			carousel
@@ -55,7 +53,7 @@
 				headerPosition: 'fixed',
 				headerTop:null,
 				title: 'Hello',
-				city: '天津',
+				city: '请定位',
 				categoryList: [
 					{ id: 1, name: '外卖', img: '/static/img/category/1.png' },
 					{ id: 2, name: '快递', img: '/static/img/category/2.png' },
@@ -64,7 +62,7 @@
 					{ id: 5, name: '在线', img: '/static/img/category/5.png' },
 					{ id: 6, name: '运动', img: '/static/img/category/6.png' },
 					{ id: 7, name: 'kk', img: '/static/img/category/7.png' },
-					{ id: 8, name: 'aa', img: '/static/img/category/8.png' }
+					{ id: 8, name: '其他', img: '/static/img/category/8.png' }
 				],
 				imgList: [{
 					url: 'https://img9.51tietu.net/pic/2019-091200/vgkpidei2tjvgkpidei2tj.jpg',
@@ -91,6 +89,32 @@
 					url:"../list/list?cid="+e.id+'&name='+e.name
 				});
 			},
+			findadd(){
+				const that = this
+				uni.getLocation({//获取地址
+				   type: 'gcj02',
+					 
+				   success(res) {
+				     const latitude = res.latitude
+				     const longitude = res.longitude
+				     const speed = res.speed
+				     const accuracy = res.accuracy
+				     console.log(latitude, longitude, speed, accuracy)
+						 const qqmapsdk = new QQMapWX({
+							 key: 'SA4BZ-JNF3S-3OOOO-65SXB-XOU6V-FYF5Z',
+						 });
+				     qqmapsdk.reverseGeocoder({//SDK调用
+				       location: { latitude, longitude },
+				       success: function (res) {
+								 that.city = res.result.ad_info.city,
+								 console.log(that.city)
+				         console.log(res)
+							  }
+				     })
+				   }
+				 })
+				
+				},
 			selectedBanner(item, index) {
 				console.log('', item, index)
 			},
@@ -114,6 +138,10 @@
 </script>
 
 <style lang="scss">
+	page {
+		background: url('http://tiebapic.baidu.com/forum/w%3D580%3B/sign=f1e777a3650e0cf3a0f74ef33a7df31f/b3119313b07eca80048de356862397dda04483f3.jpg');
+	}
+	
 	.content {
 		display: flex;
 		flex-direction: column;
@@ -130,14 +158,14 @@
 		position: fixed;
 		top: 0;
 		z-index: 10;
-		background-color: #fff;
+		background-color: #F0FFFF;
 	
 		/*  #ifdef  APP-PLUS  */
 		top: var(--status-bar-height);
 		/*  #endif  */
 	
 		.addr {
-			width: 120upx;
+			width: 200upx;
 			height: 60upx;
 			flex-shrink: 0;
 			display: flex;
@@ -148,8 +176,12 @@
 				margin-right: 5upx;
 				display: flex;
 				align-items: center;
-				font-size: 42upx;
+				font-size: 32upx;
 				color: #ffc50a;
+				.a {
+					height: 60upx;
+					width: 60upx;
+				}
 			}
 		}
 		.input-box {
@@ -178,7 +210,7 @@
 			}
 		}
 		.icon-btn {
-			width: 120upx;
+			width: 60upx;
 			height: 60upx;
 			flex-shrink: 0;
 			display: flex;
@@ -195,6 +227,10 @@
 	
 	.turn {
 		margin-top: 80rpx;
+	}
+	
+	.push {
+		border: thin;
 	}
 	
 	.category-list {
