@@ -372,10 +372,11 @@
 				this.$emit("confirm", obj);
 			},
 			sureClick() {
+				const that = this
 				let obj = {
 					'result': this.result,
 					'titles': this.selectedTitleObj,
-					'isReset': false
+					'isReset': false,
 				}
 				this.$emit("confirm", obj);
 			},

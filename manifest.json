@@ -53,6 +53,7 @@
             "sdkConfigs" : {}
         }
     },
+		
     /* 快应用特有相关 */
     "quickapp" : {},
     /* 小程序特有相关 */
@@ -61,6 +62,11 @@
         "setting" : {
             "urlCheck" : false
         },
+				"permission": {
+				    "scope.userLocation": {
+				      "desc": "您的位置信息将用于寻找附近的检测点"
+				    }
+				  },
         "usingComponents" : true
     },
     "mp-alipay" : {

@@ -89,7 +89,7 @@
 				return this.$store.state.login
 			},
 			nickName:function() {
-				return this.$store.state.username
+				return this.$store.state.userName
 			},
 			avatarUrl:function(){
 				return this.$store.state.avatarUrl

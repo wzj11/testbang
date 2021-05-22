@@ -59,7 +59,7 @@ export default {
 	/* #ifndef APP-NVUE */
 	display: flex;
 	/* #endif */
-	background-color: $uni-bg-color;
+	
 	position: relative;
 	flex-direction: column;
 }

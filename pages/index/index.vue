@@ -4,7 +4,10 @@
 			<view v-if="showHeader" class="header" :style="{ position: headerPosition,top:headerTop,opacity: afterHeaderOpacity }">
 				<!-- 定位城市 -->
 				<view class="addr">
-					<view class="icon location" @click="findadd">{{city}}</view>
+					<view class="icon location" @click="findadd">
+						<image class="a" src="../../static/img/tarbar/ditu.png" mode=""></image>
+					</view>
+					{{city}}
 				</view>
 				<!-- 搜索框 -->
 				<view class="input-box">
@@ -16,16 +19,13 @@
 					<view class="icon search"></view>
 				</view>
 				<!-- 右侧图标按钮 -->
-				<view class="icon-btn">
-					<view class="icon yuyin-home"></view>
-					<view class="icon tongzhi" @tap="toMsg"></view>
-				</view>
+				
 			</view>
 			<uni-search-bar :radius="100" @confirm="search" cancelButton="none"></uni-search-bar>
 			<carousel :img-list="imgList" url-key="url" @selected="selectedBanner"/>
 		</view>
-		<uni-list v-for="(row, index) in tllist" :key="index">
-		   <uni-list-item :title="row.type" :note="row.content" :rightText="row.price" to="../detail/detail"></uni-list-item>
+		<uni-list v-for="(row, index) in tllist" :key="index" >
+		   <uni-list-item :title="row.type" :note="row.content" :rightText="row.price" @click="toDe(row)" clickable="true"></uni-list-item>
 		</uni-list>
 		<view v-show="isLoadMore">
 		                <uni-load-more status="loading" ></uni-load-more>
@@ -94,6 +94,14 @@
 		methods: {
 			selectedBanner(item, index) {
 				console.log('', item, index)
+			},
+			toDe:function(item) {
+				let str=JSON.stringify(item);
+				uni.navigateTo({
+					url:'../detail/detail?jsonStr=' + str
+				})
+				console.log('yes')
+				console.log(item)
 			},
 			findadd(){
 				const that = this
@@ -177,6 +185,16 @@
 </script>
 
 <style lang="scss">
+	page {
+		background: url('http://tiebapic.baidu.com/forum/w%3D580/sign=8b08229a19f41bd5da53e8fc61db81a0/f42cbd99a9014c089810ed141d7b02087bf4f465.jpg');
+	  background-size: 100% 100%;
+	}
+	.content {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		justify-content: center;
+	}
 	.header {
 		width: 92%;
 		padding: 0 4%;
@@ -186,14 +204,14 @@
 		position: fixed;
 		top: 0;
 		z-index: 10;
-		background-color: #fff;
+		background-color: #E0EEEE;
 	
 		/*  #ifdef  APP-PLUS  */
 		top: var(--status-bar-height);
 		/*  #endif  */
 	
 		.addr {
-			width: 120upx;
+			width: 200upx;
 			height: 60upx;
 			flex-shrink: 0;
 			display: flex;
@@ -206,6 +224,10 @@
 				align-items: center;
 				font-size: 32upx;
 				color: #ffc50a;
+				.a {
+					height: 60upx;
+					width: 60upx;
+				}
 			}
 		}
 		.input-box {
@@ -247,13 +269,6 @@
 				font-size: 42upx;
 			}
 		}
-	}
-	
-	.content {
-		display: flex;
-		flex-direction: column;
-		align-items: center;
-		justify-content: center;
 	}
 	
 	.city {
