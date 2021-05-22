@@ -7,88 +7,76 @@
 					<text class="text-gray text-bold">姓名</text>
 					<input class="margin-left-sm" type="text" placeholder="请输入姓名" />
 				</view>
-				<view class="nation-box flex-row flex-center radius-xs border margin-top-sm">
-					<text class="text-gray text-bold">民族</text>
-					<picker mode="selector" :range="sexList" class="text-center margin-left-sm">
-						<view>{{sexList[0]}}</view>
+				<view class="date-box flex-row flex-center radius-xs border margin-top-sm">
+					<text class="text-gray text-bold">生日</text>
+					<picker mode="date" class="text-center margin-left-sm">
+						<view>2000-01-01</view>
 					</picker>
 				</view>
-				<view class="sex-age flex-row margin-top-sm grid col-2">
+				<view class="sex-edu flex-row margin-top-sm grid col-2">
 					<view class="sex-box flex-row border radius-xs flex-center">
 						<text class="text-gray text-bold">性别</text>
 						<picker mode="selector" :range="sexList" class="text-center">
 							<view>{{sexList[0]}}</view>
 						</picker>
 					</view>
-					<view class="age-box flex-row border radius-xs flex-center">
-						<text class="text-gray text-bold">年龄</text>
-						<input class="margin-left-sm" type="text" placeholder="年龄" />
+					<view class="edu-box flex-row border radius-xs flex-center">
+						<text class="text-gray text-bold">教育状态</text>
+						<picker mode="selector" :range="eduList" class="text-center">
+							<view>{{eduList[0]}}</view>
+						</picker>
 					</view>
 				</view>
 			</view>
 			<view class="head-right radius-xs border">
+				<image class="upload" src="../../../static/upload.png" mode="aspectFit" @upload></image><!--上传头像 -->
 			</view>
 		</view>
 		
-		<!-- 参加工作时间 -->
-		<view class="join-job-time flex-row flex-center border margin-top-sm radius-xs">
-			<text class="text-gray text-bold">参加工作时间</text>
-			<picker mode="date" class="text-center margin-left-sm">
-				<view>2018-02-02</view>
-			</picker>
-		</view>
-		<!-- 现居住地址 -->
-		<view class="current-place flex-row flex-center border margin-top-sm radius-xs">
-			<text class="text-gray text-bold">现居住地</text>
+		
+		<!-- 所在城市 -->
+		<view class="current-place flex-row flex-center border margin-top-xs radius-xs">
+			<text class="text-gray text-bold">所在城市</text>
 			<picker mode="region" class="text-center margin-left-sm">
 				<view>{{current_place}}</view>
 			</picker>
 		</view>
-		<!-- 户籍所在地 -->
-		<view class="census-place flex-row flex-center border margin-top-sm radius-xs">
-			<text class="text-gray text-bold">户籍所在地</text>
-			<picker mode="region" class="text-center margin-left-sm">
-				<view>{{census_place}}</view>
+		<!-- 生日 -->
+		<view class="join-job-time flex-row flex-center border margin-top-xs radius-xs">
+			<text class="text-gray text-bold">生日</text>
+			<picker mode="date" class="text-center margin-left-xs">
+				<view>2000-01-01</view>
+			</picker>
+		</view><!-- 最高学历 -->
+		<view class="highestedu flex-row flex-center border margin-top-xs radius-xs">
+			<text class="text-gray text-bold">最高学历</text>
+			<picker mode="selector" :range="highestedu"class="text-center margin-left-sm">
+				<view>{{highestedu[0]}}</view>
 			</picker>
 		</view>
 		<!-- 政治面貌 -->
-		<view class="political-status flex-row flex-center border margin-top-sm radius-xs">
+		<view class="political-status flex-row flex-center border margin-top-xs radius-xs">
 			<text class="text-gray text-bold">政治面貌</text>
 			<picker mode="selector" :range="politicalList" class="text-center margin-left-sm">
 				<view>{{politicalList[0]}}</view>
 			</picker>
 		</view>
-		<!-- 求职状态 -->
-		<view class="search-status flex-row flex-center border margin-top-sm radius-xs">
-			<text class="text-gray text-bold">求职状态</text>
-			<picker mode="selector" :range="statusList" class="text-center margin-left-sm">
-				<view>{{statusList[0]}}</view>
-			</picker>
-		</view>
-		<!-- 期望行业 -->
-		<view class="expect-industry border margin-top-sm flex-column align-center"
-		@click="toChooseExpectIndustry">
-			<view class="head-tip">
-				<text class="text-gray text-bold">期望行业</text>
-			</view>
-			<view class="industry-list flex-row align-center">
-				<view class="item" v-for="(item, index) in itemList" :key="index">
-					<text class="text-gray text-xs">web前端开发工程师</text>
-				</view>
-			</view>
-		</view>
-		<!-- 期望岗位 -->
-		<view class="expect-job border margin-top-sm flex-column align-center"
-		@click="toChooseExpectJob">
-			<view class="head-tip">
-				<text class="text-gray text-bold">期望岗位</text>
-			</view>
-			<view class="job flex-row align-center">
-				<text>{{expect_job}}</text>
-			</view>
+		
+		<view class="phone flex-row flex-center border margin-top-lg radius-xs">
+			<text class="text-gray text-bold">手机号码</text>
+			<input class="margin-left-sm" type="text" placeholder="请输入手机号码" />
 		</view>
 		
-		<!-- 简历保存按钮 -->
+		<view class="mail flex-row flex-center border margin-top-xs radius-xs">
+			<text class="text-gray text-bold">邮箱</text>
+			<input class="margin-left-sm" type="text" placeholder="请输入邮箱" />
+		</view>
+		
+		<view class="qq flex-row flex-center border margin-top-xs radius-xs">
+			<text class="text-gray text-bold">QQ</text>
+			<input class="margin-left-sm" type="text" placeholder="请输入QQ" />
+		</view>
+		
 		<view class="re-btn re-btn-lg margin-top-lg bg-blue text-white">
 			保存简历
 		</view>
@@ -99,11 +87,11 @@
 	export default {
 		data() {
 			return {
+				eduList:['请选择','在读','已毕业'],
 				sexList: ['男', '女'],
-				politicalList: ['群众', '中共党员'],
-				census_place: '选择地址',
+				politicalList: ['请选择','群众', '中共党员'],
 				current_place: '选择地址',
-				statusList: ['在职', '随时就职'],
+				highestedu:['请选择','初中','高中/中专','大学/大专','硕士','博士'],
 				itemList: [
 					'',
 					'',
@@ -145,39 +133,62 @@
 		flex: 3;
 	}
 	
-	.sex-age {
-		width: 92%;
+	.upload{
+		height: 90%;
+		width: 90%;
+		align-items: center;
+		align-content: center;
+	}
+	.sex-edu {
+		width: 80%;
 		grid-gap: 20rpx;
 	}
 	
-	.sex-box,
-	.age-box {
+	.sex-box{
+		width: 80%;
 		height: 80rpx;
 	}
-	
-	.sex-box picker {
-		width: 64%;
+	.edu-box{
+		height: 80rpx;
+		width: 133%;
 	}
 	
-	.age-box input {
-		width: 50%;
+	.sex-box picker{
+		width: 30%;
+	}
+	.edu-box picker {
+		width: 44%;
 	}
 	
 	.name-box,
-	.nation-box {
+	.date-box {
 		width: 92%;
 		height: 80rpx;
 	}
 	
 	.name-box input,
-	.nation-box picker {
+	.date-box picker {
 		width: 80%;
 	}
 	
+	.phone,
+	.mail,
+	.qq{
+		width: 92%;
+		height: 80rpx;
+	}
+	
+	.phone input,
+	.mail input,
+	.qq input{
+		width: 80%;
+	}
 	.join-job-time,
 	.current-place,
+	.education,
 	.census-place,
 	.political-status,
+	.highestedu,
 	.search-status {
 		width: 94%;
 		height: 80rpx;
@@ -185,8 +196,10 @@
 	
 	.join-job-time picker,
 	.current-place picker,
+	.education picker,
 	.census-place picker,
 	.political-status picker,
+	.highestedu picker,
 	.search-status picker {
 		width: 66%;
 	}

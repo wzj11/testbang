@@ -10,17 +10,10 @@
 					</view>
 					<view class="text-box flex-column justify-center">
 						<text class="text-bold text-xl">{{nickName}}</text>
-						<!-- <text class="margin-top-sm text-xs">1xxxxxxxxxx</text> -->
-							<button @tap="goLogin" v-if="!isLogin">
-										授权登录
-							</button>
+							<text class="login"@tap="goLogin" v-if="!isLogin">
+										请登录
+							</text>
 
-					</view>
-				</view>
-				<view class="card-right flex-row flex-center"@tap="toFavorite">
-					<view class="re-btn bg-gray re-btn-sm text-black text-xs">
-						<image src="../../static/shoucang.png" class="shoucang" ></image>
-						我的收藏
 					</view>
 				</view>
 			</view>
@@ -51,29 +44,25 @@
 				menuList: [
 					{
 						icon: '../../static/all.png',
-						name: '全部'
+						name: '我的发布'
 					},
 					{
 						icon: '../../static/yitoudi.png',
-						name: '已投递'
-					},
-					{
-						icon: '../../static/daimianshi.png',
-						name: '待面试'
+						name: '已收藏'
 					},
 					{
 						icon: '../../static/pass.png',
 						name: '未通过'
+					},
+					{
+						icon: '../../static/daimianshi.png',
+						name: '浏览记录'
 					}
 				],
 				funcList: [
 					{
 						icon: '../static/jianli.png',
 						name: '我的简历'
-					},
-					{
-						icon: '../static/jianzhi.png',
-						name: '我的兼职'
 					},
 					{
 						icon: '../static/share.png',
@@ -116,20 +105,15 @@
 						break;
 					case 1:
 						uni.navigateTo({
-							url: 'myPartTime/myPartTime'
+							url: 'share/share'
 						})
 						break;
 					case 2:
 						uni.navigateTo({
-							url: 'share/share'
-						})
-						break;
-					case 3:
-						uni.navigateTo({
 							url: 'report/report'
 						})
 						break;
-					case 4:
+					case 3:
 						uni.navigateTo({
 							url: 'setting/setting'
 						})
@@ -138,14 +122,28 @@
 				}
 			},
 			toOfferPage:function(index) {
-				uni.navigateTo({
-					url: 'allOffer/allOffer?index=' + index
-				})
-			},
-			toFavorite(){
-				uni.navigateTo({
-					url:"Favorite/Favorite"
-				})
+				switch(index) {
+					case 0:
+						uni.navigateTo({
+							url: 'allOffer/allOffer'
+						})
+						break;
+					case 1:
+						uni.navigateTo({
+							url: 'Favorite/Favorite'
+						})
+						break;
+					case 2:
+						uni.navigateTo({
+							url: 'allOffer/allOffer'
+						})
+						break;
+					case 3:
+						uni.navigateTo({
+							url: 'history/history'
+						})
+						break;	
+				}
 			},
 			goLogin() {
 				// 获取code 小程序专有，用户登录凭证。
@@ -223,15 +221,16 @@
 		color: white;
 	}
 	
-	.info-card .card-right {
-		width: 26%;
-		height: 100%;
+	.text-box .login{
+		font-size: 50upx;
+		
 	}
 	
 	.menu-list {
 		width: 94%;
 		height: 160rpx;
 		margin-top: -90rpx;
+		
 	}
 	
 	.menu-item {

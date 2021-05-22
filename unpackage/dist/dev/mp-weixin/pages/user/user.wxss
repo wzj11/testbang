@@ -36,9 +36,8 @@
 	height: 100%;
 	color: white;
 }
-.info-card .card-right {
-	width: 26%;
-	height: 100%;
+.text-box .login{
+	font-size: 50rpx;
 }
 .menu-list {
 	width: 94%;

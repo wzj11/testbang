@@ -7,7 +7,7 @@
 		{
 			"path": "pages/user/user",
 			"style": {
-				"navigationBarTitleText": "我的"
+				"navigationBarTitleText": "个人中心"
 			}
 		},
 		{
@@ -20,12 +20,6 @@
 			"path": "pages/messsage/messsage",
 			"style": {
 				"navigationBarTitleText": "信息"
-			}
-		},
-		{
-			"path": "pages/my/my",
-			"style": {
-				"navigationBarTitleText": "我的"
 			}
 		},
 		{
@@ -71,12 +65,6 @@
 			}
 		}
 		,{
-		    "path" : "pages/user/myPartTime/myPartTime",
-		    "style" : {
-				"navigationBarTitleText": "我的兼职"
-			}
-		}
-		,{
 		    "path" : "pages/user/report/report",
 		    "style" : {
 				"navigationBarTitleText": "举报投诉"
@@ -98,7 +86,7 @@
             "path" : "pages/user/Favorite/Favorite",
             "style" :                                                                                    
             {
-                "navigationBarTitleText": ""
+                "navigationBarTitleText": "我的收藏"
 		}
 		}
 	    ,{
@@ -109,13 +97,21 @@
                 "enablePullDownRefresh": false
             }
             
-        }
-        ,
-				  {
+        },
+		{
             "path" : "pages/newrecruit/newrecruit",
             "style" :                                                                                    
             {
                 "navigationBarTitleText": "xintu",
+                "enablePullDownRefresh": false
+            }
+            
+        },
+		{
+            "path" : "pages/user/history/history",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "浏览历史",
                 "enablePullDownRefresh": false
             }
             

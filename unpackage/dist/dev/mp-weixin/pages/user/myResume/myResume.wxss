@@ -15,41 +15,69 @@
 	-webkit-flex: 3;
 	        flex: 3;
 }
-.sex-age {
-	width: 92%;
+.upload{
+	height: 90%;
+	width: 90%;
+	-webkit-box-align: center;
+	-webkit-align-items: center;
+	        align-items: center;
+	-webkit-align-content: center;
+	        align-content: center;
+}
+.sex-edu {
+	width: 80%;
 	grid-gap: 20rpx;
 }
-.sex-box,
-.age-box {
+.sex-box{
+	width: 80%;
 	height: 80rpx;
 }
-.sex-box picker {
-	width: 64%;
+.edu-box{
+	height: 80rpx;
+	width: 133%;
 }
-.age-box input {
-	width: 50%;
+.sex-box picker{
+	width: 30%;
+}
+.edu-box picker {
+	width: 44%;
 }
 .name-box,
-.nation-box {
+.date-box {
 	width: 92%;
 	height: 80rpx;
 }
 .name-box input,
-.nation-box picker {
+.date-box picker {
+	width: 80%;
+}
+.phone,
+.mail,
+.qq{
+	width: 92%;
+	height: 80rpx;
+}
+.phone input,
+.mail input,
+.qq input{
 	width: 80%;
 }
 .join-job-time,
 .current-place,
+.education,
 .census-place,
 .political-status,
+.highestedu,
 .search-status {
 	width: 94%;
 	height: 80rpx;
 }
 .join-job-time picker,
 .current-place picker,
+.education picker,
 .census-place picker,
 .political-status picker,
+.highestedu picker,
 .search-status picker {
 	width: 66%;
 }
