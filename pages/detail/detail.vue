@@ -292,7 +292,6 @@ export default {
 	methods: {
 		//轮播图指示器
 		swiperChange(event) {
-			console.log(event.detail)
 			this.currentSwiper = event.detail.current;
 		},
 		//消息列表
@@ -303,8 +302,9 @@ export default {
 		},
 		// 客服
 		toChat(){
+			let str = JSON.stringify(this.info)
 			uni.navigateTo({
-				url:"../msg/chat/chat?name=客服008"
+				url:"../testmessage/testmessage?Jsonstr=" + str + "&type=my"
 			})
 		},
 		// 分享

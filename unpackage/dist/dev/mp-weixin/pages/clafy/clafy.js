@@ -96,7 +96,7 @@ var components
 try {
   components = {
     uToast: function() {
-      return __webpack_require__.e(/*! import() | node-modules/uview-ui/components/u-toast/u-toast */ "node-modules/uview-ui/components/u-toast/u-toast").then(__webpack_require__.bind(null, /*! uview-ui/components/u-toast/u-toast.vue */ 228))
+      return __webpack_require__.e(/*! import() | node-modules/uview-ui/components/u-toast/u-toast */ "node-modules/uview-ui/components/u-toast/u-toast").then(__webpack_require__.bind(null, /*! uview-ui/components/u-toast/u-toast.vue */ 236))
     }
   }
 } catch (e) {
@@ -153,7 +153,7 @@ __webpack_require__.r(__webpack_exports__);
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var carousel = function carousel() {__webpack_require__.e(/*! require.ensure | components/vear-carousel/vear-carousel */ "components/vear-carousel/vear-carousel").then((function () {return resolve(__webpack_require__(/*! @/components/vear-carousel/vear-carousel */ 235));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var _default =
+/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var carousel = function carousel() {__webpack_require__.e(/*! require.ensure | components/vear-carousel/vear-carousel */ "components/vear-carousel/vear-carousel").then((function () {return resolve(__webpack_require__(/*! @/components/vear-carousel/vear-carousel */ 243));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var _default =
 
 
 
@@ -250,19 +250,19 @@ __webpack_require__.r(__webpack_exports__);
       console.log('', item, index);
     },
     toFa: function toFa() {
-      /*if (this.$store.state.login) {
-                           	uni.navigateTo({
-                           		url:'../recruit/recruit'
-                           	})
-                           } else {
-                           	this.$refs.uToast.show({
-                           		title:'您未登录，请前往"我的"',
-                           		type:'error'
-                           	})
-                           }*/
-      uni.navigateTo({
-        url: '../recruit/recruit' });
+      if (this.$store.state.login) {
+        uni.navigateTo({
+          url: '../recruit/recruit' });
 
+      } else {
+        this.$refs.uToast.show({
+          title: '您未登录，请前往"我的"',
+          type: 'error' });
+
+      }
+      /*uni.navigateTo({
+        	url:'../recruit/recruit'
+        })*/
     } } };exports.default = _default;
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
 

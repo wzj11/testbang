@@ -95,7 +95,7 @@
 				console.log('', item, index)
 			},
 			toFa:function() {
-				/*if (this.$store.state.login) {
+				if (this.$store.state.login) {
 					uni.navigateTo({
 						url:'../recruit/recruit'
 					})
@@ -104,10 +104,10 @@
 						title:'您未登录，请前往"我的"',
 						type:'error'
 					})
-				}*/
-				uni.navigateTo({
+				}
+				/*uni.navigateTo({
 					url:'../recruit/recruit'
-				})
+				})*/
 			}
 		}
 	}

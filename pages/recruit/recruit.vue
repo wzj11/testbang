@@ -14,7 +14,10 @@
 				<u-input v-model="price" type="number" border="border"  placeholder="请输入薪资,根据您选择的结算方式决定"/>
 			</u-form-item>
 			<u-form-item label="地址">
-				<u-input v-model="address" type="text" border="border"  placeholder="请输入详细工作地址"/>
+				<u-input v-model="preadd" type="select" border="border"  @click="newshow = true" placeholder="请选择工作地址"/>
+			</u-form-item>
+			<u-form-item label="详细地址">
+				<u-input v-model="lastadd" type="text" border="border" placeholder="请输入详细地址"/>
 			</u-form-item>
 			<u-form-item label="时间">
 				<u-input v-model="time" type="text" border="border"  placeholder="请输入工作时间,如 周三14:00-20:00"/>
@@ -30,6 +33,9 @@
 		</view>
 		<u-toast ref="uToast" type="success"/>
 		<u-toast ref="uToast1" type="success"/>
+		<view>
+				<u-picker v-model="newshow" mode="region" @confirm="firm"></u-picker>
+			</view>
 	</view>
 </template>
 
@@ -39,12 +45,19 @@
 			return {
 				value:'',
 				name:'',
-				address: '',
 				data: '',
 				price: '',
 				time:'',
 				type:'',
+				preadd:'',
+				lastadd:'',
+				newshow:false,
 				imageList:[],
+				addresslist:{
+					province:'',
+					city:'',
+					area:''
+				},
 				show:false,
 				reshow:false,
 				params:{
@@ -88,6 +101,9 @@
 				} else {
 					return true
 				}
+			},
+			address:function() {
+				return this.preadd + '/' + this.lastadd
 			}
 		},
 		methods: {
@@ -125,6 +141,14 @@
 						uni.hideLoading()
 					}
 				})
+			},
+			firm:function(e) {
+				console.log(e)
+				this.addresslist.province = e.province.label
+				this.addresslist.city = e.city.label
+				this.addresslist.area = e.area.label
+				console.log(this.addresslist)
+				this.preadd = this.addresslist.province + '-' +  this.addresslist.city + '-' + this.addresslist.area
 			},
 			actionSheetCallback(index) {
 							this.value = this.actionSheetList[index].text;

@@ -96,10 +96,10 @@ var components
 try {
   components = {
     uniList: function() {
-      return __webpack_require__.e(/*! import() | uni_modules/uni-list/components/uni-list/uni-list */ "uni_modules/uni-list/components/uni-list/uni-list").then(__webpack_require__.bind(null, /*! @/uni_modules/uni-list/components/uni-list/uni-list.vue */ 207))
+      return __webpack_require__.e(/*! import() | uni_modules/uni-list/components/uni-list/uni-list */ "uni_modules/uni-list/components/uni-list/uni-list").then(__webpack_require__.bind(null, /*! @/uni_modules/uni-list/components/uni-list/uni-list.vue */ 215))
     },
     uniListItem: function() {
-      return __webpack_require__.e(/*! import() | uni_modules/uni-list/components/uni-list-item/uni-list-item */ "uni_modules/uni-list/components/uni-list-item/uni-list-item").then(__webpack_require__.bind(null, /*! @/uni_modules/uni-list/components/uni-list-item/uni-list-item.vue */ 214))
+      return __webpack_require__.e(/*! import() | uni_modules/uni-list/components/uni-list-item/uni-list-item */ "uni_modules/uni-list/components/uni-list-item/uni-list-item").then(__webpack_require__.bind(null, /*! @/uni_modules/uni-list/components/uni-list-item/uni-list-item.vue */ 222))
     }
   }
 } catch (e) {
@@ -450,7 +450,6 @@ var _default =
   methods: {
     //轮播图指示器
     swiperChange: function swiperChange(event) {
-      console.log(event.detail);
       this.currentSwiper = event.detail.current;
     },
     //消息列表
@@ -461,8 +460,9 @@ var _default =
     },
     // 客服
     toChat: function toChat() {
+      var str = JSON.stringify(this.info);
       uni.navigateTo({
-        url: "../msg/chat/chat?name=客服008" });
+        url: "../testmessage/testmessage?Jsonstr=" + str + "&type=my" });
 
     },
     // 分享

@@ -120,6 +120,15 @@
             }
             
         }
+        ,{
+            "path" : "pages/testmessage/testmessage",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "聊",
+                "enablePullDownRefresh": false
+            }
+            
+        }
     ],
 	"globalStyle": {
 		"navigationBarTextStyle": "black",
